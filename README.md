@@ -59,7 +59,7 @@ Implement a SIEM system using Splunk to collect, analyze, and correlate security
 2. **Create Alerts**:
    - From the search results, click `Save As > Alert`.
    - Configure the alert conditions and actions.
-
+   - [Search Screenshot](https://github.com/MurdaRick760/Detection-Lab/issues/1#issue-2443741374)
 ### **6. Dashboards and Reports**
 1. **Create a Dashboard**:
    - Navigate to `Apps > Search & Reporting > Dashboards`.
