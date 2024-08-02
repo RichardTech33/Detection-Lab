@@ -1,4 +1,4 @@
-# **SIEM Implementation and Log Analysis with Splunk on a Home Network**
+# SIEM and Log Analysis Project with Splunk Cloud
 
 ## **Introduction**
 Implement a SIEM system using Splunk to collect, analyze, and correlate security logs from devices on your home network.
@@ -15,78 +15,90 @@ Implement a SIEM system using Splunk to collect, analyze, and correlate security
 - Enhanced knowledge of network protocols and security vulnerabilities.
 - Development of critical thinking and problem-solving skills in cybersecurity.
 
-## **Steps**
+## Step-by-Step Implementation
 
-### **1. Download and Install Splunk**
-1. **Download Splunk** from [Splunk's official website](https://www.splunk.com/).
+### 1. Splunk Cloud Setup
 
-2. **Install Splunk** on your machine.
-   - For Windows: Double-click the installer and follow the prompts.
-   - For Linux: Use the terminal to install using the appropriate package manager.
+1. **Sign Up for Splunk Cloud**
+   - Go to the [Splunk Cloud website](https://www.splunk.com/en_us/software/splunk-cloud.html) and sign up for an account.
+   - Follow the prompts to set up your environment.
 
-### **2. Start Splunk and Create an Account**
-1. **Start Splunk**:
-   - Windows: Launch Splunk from the Start menu.
-   - Linux: Use the command `sudo /opt/splunk/bin/splunk start`.
+2. **Create an Index**
+   - Navigate to the Splunk Cloud interface.
+   - Go to `Settings` > `Indexes` and click `New Index`.
+   - Enter a name for the index and configure any additional settings as needed.
+   - <img width="700" alt="Screenshot 2024-08-01 at 8 57 36 PM" src="https://github.com/user-attachments/assets/25ddab00-56af-4a48-ab8c-ddcbabcbac36">
 
-2. **Create an Admin Account**:
-   - Open your web browser and go to `http://localhost:8000`.
-   - Follow the prompts to create an admin account.
+### 2. Forwarder Configuration
 
-### **3. Configuring Data Inputs**
-1. **Identify Log Sources**:
-   - Determine which devices on your home network will provide logs (e.g., computers, routers, smart devices).
+1. **Download and Install the Universal Forwarder**
+   - Download the Splunk Universal Forwarder from the [Splunk Downloads page](https://www.splunk.com/en_us/download/universal-forwarder.html).
+   - Install the forwarder on your home network devices.
 
-2. **Enable Logging on Devices**:
-   - Configure your devices to generate and send logs to your Splunk instance.
-   - For Windows PCs, enable Windows Event Logs.
-   - For routers, enable syslog and point it to your Splunk server's IP.
+2. **Configure the Forwarder**
+   - Edit the `inputs.conf` file to specify the log sources.
+   - Update the `outputs.conf` file with the Splunk Cloud instance details.
 
-3. **Add Data Sources**:
-   - Navigate to `Settings > Data Inputs`.
-   - Choose the type of data input (e.g., Files & Directories for local logs, TCP/UDP for syslog).
+3. **Verify Forwarder Connectivity**
+   - Use the `splunk btool` command to check the forwarder configuration.
+   - Ensure that the forwarder is successfully sending logs to Splunk Cloud. In this instance you, can verify this information in the Splunk terminal without having to use the interface. As shown below:
+   - <img width="700" alt="ForwarderCLI" src="https://github.com/user-attachments/assets/6fc3f408-fc38-46a0-91bc-903536050a59">
 
-### **4. Creating and Managing Indexes**
-1. **Create an Index**:
-   - Navigate to `Settings > Indexes`.
-   - Click on `New Index` and configure settings as needed.
+### 3. Log Collection
 
-### **5. Search and Investigate Logs**
-1. **Perform a Basic Search**:
-   - Go to `Apps > Search & Reporting`.
-   - Use the search bar to query logs. Example: `index=your_index_name`.
+1. **Define Log Sources**
+   - Identify and configure the devices and applications from which logs will be collected.
+   - Ensure that each source is properly configured to forward logs.
 
-2. **Create Alerts**:
-   - From the search results, click `Save As > Alert`.
-   - Configure the alert conditions and actions.
-   - [Search Screenshot](https://github.com/MurdaRick760/Detection-Lab/issues/1#issue-2443741374)
-### **6. Dashboards and Reports**
-1. **Create a Dashboard**:
-   - Navigate to `Apps > Search & Reporting > Dashboards`.
-   - Click `Create New Dashboard` and add search results, charts, and visualizations.
+2. **Verify Log Collection**
+   - Check the Splunk Cloud interface to ensure logs are being ingested correctly.
 
-2. **Generate Reports**:
-   - Go to `Reports` and click `Create New Report`.
-   - Configure the report settings and save it.
+### 4. Data Ingestion
 
-### **7. Advanced Analysis**
-1. **Create Correlation Searches**:
-   - Navigate to `Settings > Content > Correlation Searches`.
-   - Create a new correlation search to detect complex security events.
+1. **Configure Data Inputs**
+   - Go to `Settings` > `Data Inputs` in Splunk Cloud.
+   - Add data inputs for each log source.
 
-2. **Install Machine Learning Toolkit**:
-   - Go to `Apps > Find More Apps` and search for the Machine Learning Toolkit.
-   - Install and configure it for advanced analytics.
+2. **Monitor Data Ingestion**
+   - Use Splunk’s monitoring tools to ensure logs are being collected and indexed properly.
 
-### **8. Maintaining and Troubleshooting**
-1. **Monitor System Health**:
-   - Use Splunk’s monitoring console to check the health of your deployment.
+### 5. Search and Analysis
 
-2. **Backup and Restore**:
-   - Regularly back up your Splunk configuration and data.
+1. **Create Search Queries**
+   - Develop SPL (Search Processing Language) queries to analyze log data.
+   - Save and test queries to ensure they return relevant results.
+   - <img width="700" alt="Screenshot 2024-08-01 at 4 28 11 PM" src="https://github.com/user-attachments/assets/563121f9-8006-4c4e-8496-73f72108eee8">
 
-## **Conclusion**
-This project demonstrates the implementation of a SIEM system using Splunk on a home network. It covers setting up data inputs, creating alerts, and generating reports for log analysis.
+2. **Build Dashboards**
+   - Create dashboards to visualize log data and monitor key metrics.
+   - Add panels for charts, graphs, and other visualizations.
+   - <img width="700" alt="Dashboard Screenshot" src="https://github.com/user-attachments/assets/62afe7ae-8ccb-485d-a88b-9fa157397c51">
+
+### 6. Alerting and Monitoring
+
+1. **Set Up Alerts**
+   - Go to `Settings` > `Searches, Reports, and Alerts`.
+   - Create alerts based on specific conditions or thresholds.
+   - <img width="700" alt="Splunkalert" src="https://github.com/user-attachments/assets/eb5227d7-6681-4888-9be4-9621201f3941">
+
+2. **Configure Notification Settings**
+   - Set up email or other notification methods to alert you of critical incidents.
+
+### 7. Reporting
+
+1. **Generate Reports**
+   - Use Splunk’s reporting features to create detailed reports on log analysis and security incidents.
+
+2. **Schedule Reports**
+   - Set up scheduled reports to automate regular monitoring.
+
+## Screenshots
+
+Add screenshots of your Splunk Cloud setup, forwarder configuration, search queries, dashboards, and reports here.
+
+## Conclusion
+
+This project demonstrates how to leverage Splunk Cloud for effective SIEM and log analysis. By setting up a forwarder, collecting logs, and analyzing data, you can gain valuable insights into your network’s security posture and respond to potential threats. For my specific log, there are no security events to show but one can set alerts for if/when they are to occur.
 
 ## **References and Resources**
 - **Official Documentation**: [Splunk Documentation](https://docs.splunk.com/Documentation/Splunk)
