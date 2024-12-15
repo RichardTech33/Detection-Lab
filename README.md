@@ -92,10 +92,6 @@ Implement a SIEM system using Splunk to collect, analyze, and correlate security
 2. **Schedule Reports**
    - Set up scheduled reports to automate regular monitoring.
 
-## Screenshots
-
-Add screenshots of your Splunk Cloud setup, forwarder configuration, search queries, dashboards, and reports here.
-
 ## Conclusion
 
 This project demonstrates how to leverage Splunk Cloud for effective SIEM and log analysis. By setting up a forwarder, collecting logs, and analyzing data, you can gain valuable insights into your network’s security posture and respond to potential threats. For my specific log, there are no security events to show but one can set alerts for if/when they are to occur.
